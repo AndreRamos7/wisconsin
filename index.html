@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+		
+	</style>
+
+  <script >
+	function getRandomInt(min, max) {
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+	  return Math.floor(Math.random() * (max - min)) + min;
+	}
+	
+	$(document).ready(function(){
+		var quant_erros = 0;
+		var quant_acertos = 0;
+		
+		var tipo = ["number", "form", "color"];
+		var rnd_tipo = getRandomInt(0, 3);
+		var avaliacao_atual = tipo[rnd_tipo];	// number_form_color
+		var valor = "";
+		var rnd = getRandomInt(0, 64);
+		$("#carta_tirada").attr("src", "imagens/" + text.imagens[rnd].img);
+		//$("#ambiente").text("avaliacao_atual: " + avaliacao_atual);
+		
+		$("a").click(function(){
+			if(avaliacao_atual === "number" )
+				valor = text.imagens[rnd].number;
+			else if(avaliacao_atual === "form" )
+				valor = text.imagens[rnd].form;
+			else if(avaliacao_atual === "color" )
+				valor = text.imagens[rnd].color;
+			var fig_click = $(this).attr("id").split("_")[rnd_tipo];
+			
+			console.log("if(" + valor + " === " + fig_click + ")");
+			if(valor === fig_click){
+				$("#result").text("Correto");
+				quant_acertos++;
+			}else{
+				$("#result").text("Errado");
+				quant_erros++;
+			}
+			if(quant_acertos >= 10){
+				rnd_tipo = getRandomInt(0, 3);
+				avaliacao_atual = tipo[rnd_tipo];
+				quant_acertos = 0;
+				//$("#ambiente").text("avaliacao_atual: " + avaliacao_atual);
+			}
+			rnd = getRandomInt(0, 64);
+			$("#carta_tirada").attr("src", "imagens/" + text.imagens[rnd].img);
+			$("#quant_erros").text("quant_erros: " + quant_erros);
+			$("#quant_acertos").text("quant_acertos: " + quant_acertos);
+			
+		});
+	});
+  </script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Teste Wisconsin</h1>
+  <span id="quant_acertos"></span>
+  <span id="quant_erros"></span>
+  <h4 id="result">.</h4>
+  
+  <p id="ambiente">Resize the browser window to see the effect.</p>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-12 ">
+				<img id="carta_tirada" src="imagens/1triangleR.png">
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 ">
+		<a href="#" id="one_triangle_red">
+			<img src="imagens/1triangleR.png">
+		</a>
+      </div>
+      <div class="col-sm-3 ">
+		<a href="#" id="two_stars_green">
+			<img src="imagens/2starsG.png">
+		</a>
+      </div>
+      <div class="col-sm-3 ">
+		<a href="#" id="tree_plus_yellow">
+			<img src="imagens/3plusY.png">
+		</a>
+      </div>
+      <div class="col-sm-3 ">
+		<a href="#" id="four_circle_blue">
+			<img src="imagens/4circleB.png">
+		</a>
+      </div>
+      
+    </div>
+  </div>
+  <br>
+  
+</div>
+<script>
+var text = {
+"imagens":[
+{"img": "1cicleR.png", "number": "one", "form": "circle", "color": "red"},
+{"img": "1circleB.png", "number":  "one", "form": "circle", "color": "blue"  },
+{"img": "1circleG.png", "number":  "one", "form": "circle", "color": "green"  },
+{"img": "1circleY.png", "number":  "one", "form": "circle", "color": "yellow"  },
+{"img": "1plusB.png", "number":  "one", "form": "plus", "color": "blue"},
+{"img": "1plusG.png", "number":  "one", "form": "plus", "color": "green"},
+{"img": "1plusR.png", "number":  "one", "form": "plus", "color": "red"},
+{"img": "1plusY.png", "number":  "one", "form": "plus", "color": "yellow" },
+{"img": "1starB.png", "number":  "one", "form": "stars", "color": "blue"},
+{"img": "1starG.png", "number":  "one", "form": "stars", "color": "green"},
+{"img": "1starR.png", "number":  "one", "form": "stars", "color": "red"},
+{"img": "1starsY.png", "number":  "one", "form": "stars", "color": "yellow"  },
+{"img": "1triangleB.png", "number":  "one", "form": "triangle", "color": "blue"},
+{"img": "1triangleG.png", "number":  "one", "form": "triangle", "color": "green"},
+{"img": "1triangleR.png", "number":  "one", "form": "triangle",  "color": "red"},
+{"img": "1triangleY.png", "number":  "one", "form": "triangle", "color": "yellow" },
+{"img": "2circleB.png", "number":  "two", "form": "circle", "color": "blue" },
+{"img": "2circleG.png", "number":  "two", "form": "circle", "color": "green"},
+{"img": "2circleR.png", "number":  "two", "form": "circle",  "color": "red"},
+{"img": "2circleY.png", "number":  "two", "form": "circle", "color": "yellow" },
+{"img": "2plusB.png", "number":  "two", "form": "plus", "color": "blue"},
+{"img": "2plusG.png", "number":  "two", "form": "plus", "color": "green"},
+{"img": "2plusR.png", "number":  "two", "form": "plus",  "color": "red"},
+{"img": "2plusY.png", "number":  "two", "form": "plus", "color": "yellow"},
+{"img": "2starsB.png", "number":  "two", "form": "stars", "color": "blue"},
+{"img": "2starsG.png", "number":  "two", "form": "stars", "color": "green" },
+{"img": "2starsR.png", "number":  "two", "form": "stars",  "color": "red"},
+{"img": "2starsY.png", "number":  "two", "form": "stars", "color": "yellow" },
+{"img": "2triangleB.png", "number":  "two", "form": "triangle", "color": "blue"},
+{"img": "2triangleG.png", "number":  "two", "form": "triangle", "color": "green" },
+{"img": "2triangleR.png", "number":  "two", "form": "triangle",  "color": "red"},
+{"img": "2triangleY.png", "number":  "two", "form": "triangle", "color": "yellow" },
+{"img": "3circleB.png", "number":  "tree", "form": "circle", "color": "blue"},
+{"img": "3circleG.png", "number":  "tree", "form": "circle", "color": "green" },
+{"img": "3circleR.png", "number":  "tree", "form": "circle",  "color": "red"},
+{"img": "3circleY.png", "number":  "tree", "form": "circle", "color": "yellow" },
+{"img": "3plusB.png", "number":  "tree", "form": "plus", "color": "blue"},
+{"img": "3plusG.png", "number":  "tree", "form": "plus", "color": "green",},
+{"img": "3plusR.png", "number":  "tree", "form": "plus", "color": "red"},
+{"img": "3plusY.png", "number":  "tree", "form": "plus", "color": "yellow"},
+{"img": "3starsB.png", "number":  "tree", "form": "stars", "color": "blue"},
+{"img": "3starsG.png", "number":  "tree", "form": "stars", "color": "green"},
+{"img": "3starsR.png", "number":  "tree", "form": "stars", "color": "red"},
+{"img": "3starsY.png", "number":  "tree", "form": "stars", "color": "yellow"},
+{"img": "3triangleB.png", "number":  "tree", "form": "triangle", "color": "blue"},
+{"img": "3triangleG.png", "number":  "tree", "form": "triangle", "color": "green"},
+{"img": "3triangleR.png", "number":  "tree", "form": "triangle", "color": "red"},
+{"img": "3triangleY.png", "number":  "tree", "form": "triangle", "color": "yellow"},
+{"img": "4circleB.png", "number":  "four", "form": "circle", "color": "blue"},
+{"img": "4circleG.png", "number":  "four", "form": "circle", "color": "green" },
+{"img": "4circleR.png", "number":  "four", "form": "circle",  "color": "red"},
+{"img": "4circleY.png", "number":  "four", "form": "circle", "color": "yellow"},
+{"img": "4plusB.png", "number":  "four", "form": "plus", "color": "blue"},
+{"img": "4plusG.png", "number":  "four", "form": "plus", "color": "green"},
+{"img": "4plusR.png", "number":  "four", "form": "plus", "color": "red"},
+{"img": "4plusY.png", "number":  "four", "form": "plus", "color": "yellow"},
+{"img": "4starsB.png", "number":  "four", "form": "stars", "color": "blue"},
+{"img": "4starsG.png", "number":  "four", "form": "stars", "color": "green"},
+{"img": "4starsR.png", "number":  "four", "form": "stars", "color": "red"},
+{"img": "4starsY.png", "number":  "four", "form": "stars", "color": "yellow"},
+{"img": "4triangleB.png", "number":  "four", "form": "triangle", "color": "blue"},
+{"img": "4triangleG.png", "number":  "four", "form": "triangle", "color": "green"},
+{"img": "4triangleR.png", "number":  "four", "form": "triangle", "color": "red"},
+{"img": "4triangleY.png", "number":  "four", "form": "triangle", "color": "yellow"},
+
+]};
+
+</script>
+</body>
+</html>
